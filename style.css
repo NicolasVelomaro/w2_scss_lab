@@ -1,7 +1,6 @@
-/* ==== 🌤️ Base Styles – Already Set ==== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(120deg, #f6d365, #fda085); /* nice modern gradient */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #f6d365, #fda085);
   height: 100vh;
   margin: 0;
   display: flex;
@@ -10,82 +9,93 @@ body {
   flex-flow: column;
 }
 
-/* ==== 📦 Container ==== */
 .container {
   background: white;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 320px;
   text-align: center;
   display: flex;
   justify-content: center;
-  /* TODO: Add vertical layout (e.g., flex-direction: column) if needed */
+  flex-direction: column;
 }
-
-/* ==== 🏷️ Title ==== */
-h1 {
+.container h1 {
   margin-bottom: 1rem;
   color: #e67e22;
-  /* TODO: Add any typography styling if desired */
+  font-size: 2rem;
+  font-weight: 600;
+}
+.container .input-group {
+  margin-bottom: 1rem;
 }
 
-/* ==== 🔎 Input Field ==== */
 input {
-  /* TODO: Style the input field:
-     - Uniform height with button
-     - Internal padding
-     - Rounded corners
-     - Responsive width
-     - Good font size
-     - Margin below
-     - Border with visible contrast
-  */
+  width: 90%;
+  padding: 0.75rem;
+  border: 2px solid rgb(240.3658536585, 179.487804878, 125.6341463415);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+input:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
 }
 
-/* ==== 🔘 Button ==== */
 button {
-  /* TODO: Style the button:
-     - Padding
-     - Background color
-     - Text color
-     - Border radius
-     - Font size
-     - Cursor pointer
-     - Margin top
-     - Transition effect (for hover)
-  */
+  padding: 0.75rem 1.5rem;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40%;
 }
-
 button:hover {
-  /* TODO: Add hover/active styling to make the button interactive */
+  background-color: rgb(191.3536585366, 101.3048780488, 21.6463414634);
+  transform: translateY(-2px);
 }
 
-/* ==== 🌦️ Weather Info ==== */
 .weather {
   margin-top: 1.5rem;
-  /* TODO: Style this section like a weather "card":
-     - Use shadows or border
-     - Padding and spacing
-     - Flex or grid layout for icon + text
-     - Responsive width or layout
-  */
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid #e67e22;
+  animation: fadeIn 0.3s ease-in;
 }
-
 .weather img {
   margin-top: 0.5rem;
   width: 80px;
-  /* Optional: Add effects or conditional styling later */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+.weather .temperature {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #e67e22;
+  margin: 0.5rem 0;
+}
+.weather .description {
+  color: rgb(240.3658536585, 179.487804878, 125.6341463415);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.weather .location {
+  color: rgb(191.3536585366, 101.3048780488, 21.6463414634);
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
-/* ==== 🧠 Dropdown Suggestions ==== */
 .dropdown {
   position: relative;
-  /* Container for input + suggestions dropdown */
 }
-
-#suggestions {
-  list-style: none;
+.dropdown #suggestions {
+  list-style: disc;
   padding: 0;
   margin: 0;
   position: absolute;
@@ -97,21 +107,76 @@ button:hover {
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 1000;
-  display: none; /* JS will toggle this */
-  /* TODO: Adjust style if needed for clarity/contrast */
+  display: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-#suggestions li {
+.dropdown #suggestions li {
   padding: 0.6rem;
   cursor: pointer;
-  border-bottom: 1px solid #eee;
-  /* TODO: Make interactive on hover */
+  border-bottom: 1px solid #f39c12;
+  transition: background-color 0.2s ease;
 }
-
-#suggestions li:last-child {
+.dropdown #suggestions li:last-child {
   border-bottom: none;
 }
-
-#suggestions li:hover {
-  background-color: #fceae0;
+.dropdown #suggestions li:hover {
+  background-color: rgb(253.3231707317, 246.3475609756, 240.1768292683);
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+  .container h1 {
+    font-size: 1.5rem;
+  }
+  .weather {
+    padding: 1rem;
+  }
+  .weather .temperature {
+    font-size: 1.5rem;
+  }
+  .weather img {
+    width: 60px;
+  }
+}
+body.dark-theme {
+  background: linear-gradient(120deg, #2c3e50, #34495e);
+}
+body.dark-theme .container {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+body.dark-theme .weather {
+  background: rgb(38.75, 38.75, 38.75);
+  border-left-color: #ff6b35;
+}
+body.dark-theme input {
+  background: rgb(51.5, 51.5, 51.5);
+  color: #ffffff;
+  border-color: #ff6b35;
+}
+body.dark-theme button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+body.dark-theme button:hover {
+  background-color: rgb(255, 69.6336633663, 2);
+  transform: translateY(-2px);
+}/*# sourceMappingURL=style.css.map */
